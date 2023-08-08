@@ -9,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 import org.apache.commons.text.StringEscapeUtils;
 
-import java.io.IOException;
 import java.time.Duration;
 import java.util.*;
 import java.util.regex.Matcher;
@@ -48,7 +47,7 @@ public class GoogleBardClient {
                 getConversationData();
             }
             Headers okhttpHeaders = Headers.of(createHeaders(token));
-            HttpUrl.Builder urlBuilder = HttpUrl.parse(BASE_URL + "/" + CHAT_URL).newBuilder()
+            HttpUrl.Builder urlBuilder = Objects.requireNonNull(HttpUrl.parse(BASE_URL + "/" + CHAT_URL)).newBuilder()
                     .addQueryParameter("bl", conversation.getBl())
                     .addQueryParameter("rt", "c")
                     .addQueryParameter("_reqid", "0");
@@ -70,35 +69,48 @@ public class GoogleBardClient {
                     .method("POST", body)
                     .headers(okhttpHeaders)
                     .build();
+            log.info("Calling Google Bard, f.req is: {}", fReq);
             Response response = httpClient.newCall(request).execute();
-            if (response.body() != null) {
+            if (response.code() != 200) {
+                log.warn("Failed to call Google Bard. Status code is: {}", response.code());
+            }
+            else if (response.body() != null) {
+                log.info("Call successfully. Parsing data...");
                 ResponseData res = parseResponse(response.body().string());
                 conversation.setC(res.getC());
                 conversation.setR(res.getR());
                 conversation.setRc(res.getRc());
-                return res.getResponses().get(3);
+                String result = res.getResponses().get(3);
+                log.info("Done! Process successfully");
+                return result;
             }
         }
         catch (Exception ex) {
-            log.warn("Failed to call Google Bard", ex);
+            log.warn("Processing failure", ex);
         }
         return "No answer";
     }
 
-    private void getConversationData() throws IOException {
-        Headers okhttpHeaders = Headers.of(createHeaders(token));
-        Request request = new Request.Builder()
-                .url(BASE_URL)
-                .get()
-                .headers(okhttpHeaders)
-                .build();
-        Response response = httpClient.newCall(request).execute();
-        if (response.body() != null) {
-            String responseStr = response.body().string();
-            String at = findValueByKey(responseStr, "SNlM0e");
-            String bl = findValueByKey(responseStr, "cfb2h");
-            conversation.setAt(at);
-            conversation.setBl(bl);
+    private void getConversationData() {
+        log.info("Getting conversation data... ");
+        try {
+            Headers okhttpHeaders = Headers.of(createHeaders(token));
+            Request request = new Request.Builder()
+                    .url(BASE_URL)
+                    .get()
+                    .headers(okhttpHeaders)
+                    .build();
+            Response response = httpClient.newCall(request).execute();
+            if (response.body() != null) {
+                String responseStr = response.body().string();
+                String at = findValueByKey(responseStr, "SNlM0e");
+                String bl = findValueByKey(responseStr, "cfb2h");
+                conversation.setAt(at);
+                conversation.setBl(bl);
+            }
+        }
+        catch (Exception ex) {
+            log.warn("Get conversation data fail", ex);
         }
     }
 
@@ -109,7 +121,8 @@ public class GoogleBardClient {
 
         if (matcher.find()) {
             return matcher.group(1);
-        } else {
+        }
+        else {
             return null;
         }
     }
