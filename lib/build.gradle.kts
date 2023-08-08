@@ -12,6 +12,8 @@ plugins {
     id("com.github.monosoul.yadegrap") version "1.0.0"
 }
 
+group = "com.github.ndanhkhoi"
+
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
@@ -47,7 +49,7 @@ configure<PublishingExtension> {
             repositories {
                 maven {
                     name = "GitHubPackages"
-                    artifactId = "googlebardclient"
+                    artifactId = "GoogleBardClient"
                     url = uri("https://maven.pkg.github.com/ndanhkhoi/GoogleBardClient")
                     credentials {
                         username = System.getenv("GITHUB_ACTOR")
