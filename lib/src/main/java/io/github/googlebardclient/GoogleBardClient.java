@@ -76,7 +76,7 @@ public class GoogleBardClient {
                 conversation.setC(res.getC());
                 conversation.setR(res.getR());
                 conversation.setRc(res.getRc());
-                return res.getResponses().get(6);
+                return res.getResponses().get(3);
             }
         }
         catch (Exception ex) {
@@ -129,24 +129,26 @@ public class GoogleBardClient {
     }
 
     private void parseData(ResponseData resData, JsonElement data) {
-        if (data != null && data.isJsonPrimitive()) {
-            String dataStr = data.getAsString();
-            if (dataStr.startsWith("c_")) {
-                resData.setC(dataStr);
-                return;
+        if (data != null) {
+            if (data.isJsonPrimitive() && (data.getAsJsonPrimitive().isString())) {
+                String dataStr = data.getAsString();
+                if (dataStr.startsWith("c_")) {
+                    resData.setC(dataStr);
+                    return;
+                }
+                if (dataStr.startsWith("r_")) {
+                    resData.setR(dataStr);
+                    return;
+                }
+                if (dataStr.startsWith("rc_")) {
+                    resData.setRc(dataStr);
+                    return;
+                }
+                resData.getResponses().add(dataStr);
             }
-            if (dataStr.startsWith("r_")) {
-                resData.setR(dataStr);
-                return;
+            if (data.isJsonArray()) {
+                ((JsonArray) data).forEach((e) -> parseData(resData, e));
             }
-            if (dataStr.startsWith("rc_")) {
-                resData.setRc(dataStr);
-                return;
-            }
-            resData.getResponses().add(dataStr);
-        }
-        if (data != null && data.isJsonArray()) {
-            ((JsonArray) data).forEach((e) -> parseData(resData, e));
         }
     }
 
