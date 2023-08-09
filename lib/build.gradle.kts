@@ -9,7 +9,6 @@ plugins {
     // Apply the java-library plugin for API and implementation separation.
     `java-library`
     `maven-publish`
-    id("com.github.monosoul.yadegrap") version "1.0.0"
 }
 
 group = "com.github.ndanhkhoi"
@@ -24,15 +23,11 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
 
     // This dependency is exported to consumers, that is to say found on their compile classpath.
-    api("org.apache.commons:commons-lang3:3.12.0")
-    api("org.apache.commons:commons-text:1.10.0")
     api("com.squareup.okhttp3:okhttp:4.10.0")
     api("com.google.code.gson:gson:2.10.1")
     implementation("org.slf4j:slf4j-api:2.0.7")
 
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
-    compileOnly("org.projectlombok:lombok:1.18.28")
-    annotationProcessor("org.projectlombok:lombok:1.18.28")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -46,10 +41,10 @@ configure<PublishingExtension> {
     publications {
         publications.create<MavenPublication>("mavenJava") {
             from(components["java"])
+            artifactId = System.getenv("CUSTOM_ARTIFACT_ID") ?: "GoogleBardClient"
             repositories {
                 maven {
                     name = "GitHubPackages"
-                    artifactId = "GoogleBardClient"
                     url = uri("https://maven.pkg.github.com/ndanhkhoi/GoogleBardClient")
                     credentials {
                         username = System.getenv("GITHUB_ACTOR")
@@ -67,14 +62,10 @@ tasks {
     }
 
     jar {
-        archiveBaseName.set("simple-telegram-command-bot-spring-boot-starter")
+        archiveBaseName.set("googlebardclient.jar")
     }
 
-    val delombok = "delombok"(com.github.monosoul.yadegrap.DelombokTask::class)
-
     javadoc {
-        dependsOn(delombok)
-        setSource(delombok)
         isFailOnError = false
         title = "Google Bard Client"
         options.encoding = "UTF-8"

@@ -1,12 +1,11 @@
-#  Google Bard Client Library For Java [![](https://jitpack.io/v/ndanhkhoi/GoogleBardClient.svg)](https://jitpack.io/#ndanhkhoi/GoogleBardClient) [![gradle-publish](https://github.com/ndanhkhoi/GoogleBardClient/actions/workflows/gradle-publish.yml/badge.svg?branch=main)](https://github.com/ndanhkhoi/GoogleBardClient/actions/workflows/gradle-publish.yml)
-
+#  Google Bard Client Library For Java [![](https://jitpack.io/v/ndanhkhoi/GoogleBardClient.svg)](https://jitpack.io/#ndanhkhoi/GoogleBardClient) 
 Simple client to get `Google Bard`'s answer from your prompt
 
 ## Usage
 
 Just import add the library to your project with one of these options:
 
-1. Using Maven Central Repository:
+### Using Maven Central Repository:
 
 - Step 1. Add the JitPack repository to your build file
 
@@ -25,11 +24,11 @@ Just import add the library to your project with one of these options:
 <dependency>
     <groupId>com.github.ndanhkhoi</groupId>
     <artifactId>GoogleBardClient</artifactId>
-    <version>v2023.08.08</version>
+    <version>v2023.08.09</version>
 </dependency>
 ```
 
-2. Using Gradle:
+### Using Gradle:
 
 - Step 1. Add the JitPack repository to your build file
 
@@ -43,43 +42,61 @@ repositories {
 
 ```gradle
 dependencies {
-    implementation 'com.github.ndanhkhoi:GoogleBardClient:v2023.08.08'
+    implementation 'com.github.ndanhkhoi:GoogleBardClient:v2023.08.09'
 }
 ```
 
 ## How to use
 
-IIt's too easy with 2 lines of code:
+IIt's too easy with few lines of code:
 
 ```java
-GoogleBardClient client = new GoogleBardClient(token);
-String answer = client.chat("Hello");
+public class BardClientApp {
+
+    public static void main(String[] args) {
+        String secure1psid = "Your __Secure-1PSID Cookie";
+        String secure1psidts = "Your __Secure-1PSIDTS Cookie";
+        GoogleBardClient client = new GoogleBardClient(secure1psid, secure1psidts);
+        Result result = client.chat("Hello");
+        if (result != null) {
+            System.out.println(result.getContent());
+        }
+    }
+    
+}
 ```
 
-## How to get token
+## How to get Cookies
 
 - Login to your account in https://bard.google.com/
 - Get value of the cookie named `__Secure-1PSID`
+- Get value of the cookie named `__Secure-1PSIDTS`
 
 ## How to reset conversation
 
 ```java
-client.resetConversation();
+public class BardClientApp {
+
+    // your code
+    
+    public void exampleForResetConversation() {
+        client.resetConversation();
+    }
+
+}
 ```
 
 ## Dependencies
 
 Thanks to these libraries:
-1. [Lombok](https://github.com/projectlombok/lombok)
-2. [Apache Commons Lang](https://github.com/apache/commons-lang)
-3. [Apache Commons Text](https://github.com/apache/commons-text)
-4. [Google Gson](https://github.com/google/gson)
-5. [Slf4j](https://github.com/qos-ch/slf4j)
+1. [Okhttp](https://github.com/square/okhttp)
+2. [Gson](https://github.com/google/gson)
+3. [Slf4j](https://github.com/qos-ch/slf4j)
 
 ## License
 MIT License
 
-Copyright (c) 2023 Larry Deng
+Copyright (c) 2023 Nguyễn Đức Anh Khôi
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
