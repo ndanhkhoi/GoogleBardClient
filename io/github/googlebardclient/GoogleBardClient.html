@@ -127,10 +127,12 @@ extends java.lang.Object</pre>
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../io/github/googlebardclient/GoogleBardClient.html#GoogleBardClient-java.lang.String-">GoogleBardClient</a></span>(java.lang.String&nbsp;token)</code>&nbsp;</td>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../io/github/googlebardclient/GoogleBardClient.html#GoogleBardClient-java.lang.String-java.lang.String-">GoogleBardClient</a></span>(java.lang.String&nbsp;secure1psid,
+                java.lang.String&nbsp;secure1psidts)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../io/github/googlebardclient/GoogleBardClient.html#GoogleBardClient-java.lang.String-java.time.Duration-">GoogleBardClient</a></span>(java.lang.String&nbsp;token,
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../io/github/googlebardclient/GoogleBardClient.html#GoogleBardClient-java.lang.String-java.lang.String-java.time.Duration-">GoogleBardClient</a></span>(java.lang.String&nbsp;secure1psid,
+                java.lang.String&nbsp;secure1psidts,
                 java.time.Duration&nbsp;timeout)</code>&nbsp;</td>
 </tr>
 </table>
@@ -149,7 +151,7 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>java.lang.String</code></td>
+<td class="colFirst"><code><a href="../../../io/github/googlebardclient/model/Result.html" title="class in io.github.googlebardclient.model">Result</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/github/googlebardclient/GoogleBardClient.html#chat-java.lang.String-">chat</a></span>(java.lang.String&nbsp;prompt)</code>&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
@@ -178,22 +180,24 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="GoogleBardClient-java.lang.String-">
+<a name="GoogleBardClient-java.lang.String-java.lang.String-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>GoogleBardClient</h4>
-<pre>public&nbsp;GoogleBardClient(java.lang.String&nbsp;token)</pre>
+<pre>public&nbsp;GoogleBardClient(java.lang.String&nbsp;secure1psid,
+                        java.lang.String&nbsp;secure1psidts)</pre>
 </li>
 </ul>
-<a name="GoogleBardClient-java.lang.String-java.time.Duration-">
+<a name="GoogleBardClient-java.lang.String-java.lang.String-java.time.Duration-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>GoogleBardClient</h4>
-<pre>public&nbsp;GoogleBardClient(java.lang.String&nbsp;token,
+<pre>public&nbsp;GoogleBardClient(java.lang.String&nbsp;secure1psid,
+                        java.lang.String&nbsp;secure1psidts,
                         java.time.Duration&nbsp;timeout)</pre>
 </li>
 </ul>
@@ -220,7 +224,7 @@ extends java.lang.Object</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>chat</h4>
-<pre>public&nbsp;java.lang.String&nbsp;chat(java.lang.String&nbsp;prompt)</pre>
+<pre>public&nbsp;<a href="../../../io/github/googlebardclient/model/Result.html" title="class in io.github.googlebardclient.model">Result</a>&nbsp;chat(java.lang.String&nbsp;prompt)</pre>
 </li>
 </ul>
 </li>
