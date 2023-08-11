@@ -24,7 +24,7 @@ Just import the library to your project with one of these options:
 <dependency>
     <groupId>com.github.ndanhkhoi</groupId>
     <artifactId>GoogleBardClient</artifactId>
-    <version>v2023.08.10</version>
+    <version>v2023.08.11</version>
 </dependency>
 ```
 
@@ -42,7 +42,7 @@ repositories {
 
 ```gradle
 dependencies {
-    implementation 'com.github.ndanhkhoi:GoogleBardClient:v2023.08.10'
+    implementation 'com.github.ndanhkhoi:GoogleBardClient:v2023.08.11'
 }
 ```
 
