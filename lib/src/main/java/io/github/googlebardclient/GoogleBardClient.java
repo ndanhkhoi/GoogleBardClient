@@ -2,6 +2,7 @@ package io.github.googlebardclient;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import io.github.googlebardclient.model.Choice;
 import io.github.googlebardclient.model.Conversation;
 import io.github.googlebardclient.model.Result;
@@ -180,6 +181,26 @@ public class GoogleBardClient {
                     choices.add(choice);
                 });
 
+        List<String> images = new ArrayList<>();
+        try {
+            if (jsonChatData.size() >= 3) {
+                if (jsonChatData.get(4).getAsJsonArray().get(0).getAsJsonArray().size() >= 4) {
+                    if (jsonChatData.get(4).getAsJsonArray().get(0).getAsJsonArray().get(4).isJsonArray()) {
+                        jsonChatData.get(4).getAsJsonArray().get(0).getAsJsonArray().get(4).getAsJsonArray()
+                                .forEach(img -> images.add(
+                                        img.getAsJsonArray()
+                                                .get(0).getAsJsonArray()
+                                                .get(0).getAsJsonArray()
+                                                .get(0)
+                                                .getAsString()
+                                ));
+                    }
+                }
+            }
+        }
+        catch (Exception ex) {
+            log.warn("Can not parse image");
+        }
         Result result = new Result();
         result.setContent(content);
         result.setConversationId(conversationId);
@@ -187,6 +208,7 @@ public class GoogleBardClient {
         result.setFactualityQueries(factualityQueries);
         result.setTextQuery(textQuery);
         result.setChoices(choices);
+        result.setImages(images);
         return result;
     }
 

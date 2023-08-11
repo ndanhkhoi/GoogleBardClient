@@ -3,7 +3,7 @@ Simple client to get `Google Bard`'s answer from your prompt
 
 ## Usage
 
-Just import add the library to your project with one of these options:
+Just import the library to your project with one of these options:
 
 ### Using Maven Central Repository:
 
@@ -24,7 +24,7 @@ Just import add the library to your project with one of these options:
 <dependency>
     <groupId>com.github.ndanhkhoi</groupId>
     <artifactId>GoogleBardClient</artifactId>
-    <version>v2023.08.09</version>
+    <version>v2023.08.10</version>
 </dependency>
 ```
 
@@ -42,7 +42,7 @@ repositories {
 
 ```gradle
 dependencies {
-    implementation 'com.github.ndanhkhoi:GoogleBardClient:v2023.08.09'
+    implementation 'com.github.ndanhkhoi:GoogleBardClient:v2023.08.10'
 }
 ```
 
@@ -60,6 +60,7 @@ public class BardClientApp {
         Result result = client.chat("Hello");
         if (result != null) {
             System.out.println(result.getContent());
+            result.getImages().forEach(e -> System.out.println("Image link: " + e));
         }
     }
     
@@ -88,10 +89,13 @@ public class BardClientApp {
 
 ## Dependencies
 
-Thanks to these libraries:
+### Thanks to these libraries:
 1. [Okhttp](https://github.com/square/okhttp)
 2. [Gson](https://github.com/google/gson)
 3. [Slf4j](https://github.com/qos-ch/slf4j)
+
+### Thanks to these reơpsitories:
+1. [acheong08/Bard](https://github.com/acheong08/Bard): Reverse engineering of Google's Bard chatbot API
 
 ## License
 MIT License

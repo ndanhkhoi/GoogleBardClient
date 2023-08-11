@@ -9,6 +9,7 @@ public class Result {
     private String factualityQueries;
     private String textQuery;
     private List<Choice> choices;
+    private List<String> images;
 
     public Result() {
         // No argument constructor
@@ -62,6 +63,14 @@ public class Result {
         this.choices = choices;
     }
 
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
+    }
+
     @Override
     public String toString() {
         return "Result{" +
@@ -71,6 +80,7 @@ public class Result {
                 ", factualityQueries='" + factualityQueries + '\'' +
                 ", textQuery='" + textQuery + '\'' +
                 ", choices='" + choices + '\'' +
+                ", images='" + images + '\'' +
                 '}';
     }
 }
