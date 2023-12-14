@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10};
+var methods = {"i0":10,"i1":10,"i2":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -152,9 +152,16 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="../../../io/github/googlebardclient/model/Result.html" title="class in io.github.googlebardclient.model">Result</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/github/googlebardclient/GoogleBardClient.html#chat-java.lang.String-">chat</a></span>(java.lang.String&nbsp;prompt)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/github/googlebardclient/GoogleBardClient.html#askAboutImage-byte:A-java.lang.String-java.lang.String-java.lang.String-">askAboutImage</a></span>(byte[]&nbsp;image,
+             java.lang.String&nbsp;filename,
+             java.lang.String&nbsp;question,
+             java.lang.String&nbsp;lang)</code>&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
+<td class="colFirst"><code><a href="../../../io/github/googlebardclient/model/Result.html" title="class in io.github.googlebardclient.model">Result</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/github/googlebardclient/GoogleBardClient.html#chat-java.lang.String-">chat</a></span>(java.lang.String&nbsp;prompt)</code>&nbsp;</td>
+</tr>
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/github/googlebardclient/GoogleBardClient.html#resetConversation--">resetConversation</a></span>()</code>&nbsp;</td>
 </tr>
@@ -221,10 +228,22 @@ extends java.lang.Object</pre>
 <a name="chat-java.lang.String-">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>chat</h4>
 <pre>public&nbsp;<a href="../../../io/github/googlebardclient/model/Result.html" title="class in io.github.googlebardclient.model">Result</a>&nbsp;chat(java.lang.String&nbsp;prompt)</pre>
+</li>
+</ul>
+<a name="askAboutImage-byte:A-java.lang.String-java.lang.String-java.lang.String-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>askAboutImage</h4>
+<pre>public&nbsp;<a href="../../../io/github/googlebardclient/model/Result.html" title="class in io.github.googlebardclient.model">Result</a>&nbsp;askAboutImage(byte[]&nbsp;image,
+                            java.lang.String&nbsp;filename,
+                            java.lang.String&nbsp;question,
+                            java.lang.String&nbsp;lang)</pre>
 </li>
 </ul>
 </li>
