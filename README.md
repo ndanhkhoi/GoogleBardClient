@@ -1,4 +1,5 @@
-#  Google Bard Client Library For Java [![](https://jitpack.io/v/ndanhkhoi/GoogleBardClient.svg)](https://jitpack.io/#ndanhkhoi/GoogleBardClient) 
+# Unoffical Google Bard Client Library For Java [![](https://jitpack.io/v/ndanhkhoi/GoogleBardClient.svg)](https://jitpack.io/#ndanhkhoi/GoogleBardClient)
+
 Simple client to get `Google Bard`'s answer from your prompt
 
 ## Usage
@@ -10,6 +11,7 @@ Just import the library to your project with one of these options:
 - Step 1. Add the JitPack repository to your build file
 
 ```xml
+
 <repositories>
     <repository>
         <id>jitpack.io</id>
@@ -21,10 +23,11 @@ Just import the library to your project with one of these options:
 - Step 2. Add the dependency
 
 ```xml
+
 <dependency>
     <groupId>com.github.ndanhkhoi</groupId>
     <artifactId>GoogleBardClient</artifactId>
-    <version>v2023.08.11</version>
+    <version>v2023.12.15</version>
 </dependency>
 ```
 
@@ -42,7 +45,7 @@ repositories {
 
 ```gradle
 dependencies {
-    implementation 'com.github.ndanhkhoi:GoogleBardClient:v2023.08.11'
+    implementation 'com.github.ndanhkhoi:GoogleBardClient:v2023.12.15'
 }
 ```
 
@@ -56,14 +59,14 @@ public class BardClientApp {
     public static void main(String[] args) {
         String secure1psid = "Your __Secure-1PSID Cookie";
         String secure1psidts = "Your __Secure-1PSIDTS Cookie";
-        GoogleBardClient client = new GoogleBardClient(secure1psid, secure1psidts);
+        GoogleBardClient client = GoogleBardClientProvider.newnewInstance(secure1psid, secure1psidts);
         Result result = client.chat("Hello");
         if (result != null) {
             System.out.println(result.getContent());
             result.getImages().forEach(e -> System.out.println("Image link: " + e));
         }
     }
-    
+
 }
 ```
 
@@ -79,9 +82,24 @@ public class BardClientApp {
 public class BardClientApp {
 
     // your code
-    
+
     public void exampleForResetConversation() {
         client.resetConversation();
+    }
+
+}
+```
+
+## Bard `askAboutImage` method
+
+```java
+public class BardClientApp {
+
+    // your code
+
+    public void exampleForAskAboutImage() {
+        // your code to load image to byte array
+        client.askAboutImage(bytes, filename, "what is in the image?", "en");
     }
 
 }
@@ -90,14 +108,17 @@ public class BardClientApp {
 ## Dependencies
 
 ### Thanks to these libraries:
+
 1. [Okhttp](https://github.com/square/okhttp)
 2. [Gson](https://github.com/google/gson)
 3. [Slf4j](https://github.com/qos-ch/slf4j)
 
 ### Thanks to these reơpsitories:
+
 1. [acheong08/Bard](https://github.com/acheong08/Bard): Reverse engineering of Google's Bard chatbot API
 
 ## License
+
 MIT License
 
 Copyright (c) 2023 Nguyễn Đức Anh Khôi
