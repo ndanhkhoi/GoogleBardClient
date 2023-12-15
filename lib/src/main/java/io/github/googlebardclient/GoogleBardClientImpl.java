@@ -48,10 +48,6 @@ class GoogleBardClientImpl implements GoogleBardClient {
     }
 
     private RequestBody createChatRequestBody(String imageUrl, String filename, String question, String lang) {
-        UUID uuid = UUID.randomUUID();
-        String uuidString = uuid.toString().replace("-", ""); // Remove hyphens
-        String uuid32Chars = uuidString.substring(0, 32); // Get the first 32 characters
-
         List<Object> imageArr = imageUrl == null ?
                 new ArrayList<>() :
                 Collections.singletonList(Arrays.asList(Arrays.asList(imageUrl, 1), filename));
@@ -60,7 +56,7 @@ class GoogleBardClientImpl implements GoogleBardClient {
                 Collections.singletonList(lang),
                 Arrays.asList(conversation.getConversationId(), conversation.getResponseId(), conversation.getChoiceId()),
                 generateRandomString(),   // Unknown random string value (1000 characters +) - If needed, can replace with a random string generator
-                uuid32Chars,   //  Random uuidv4 (32 characters)
+                random32CharsUUIDv4(),   //  Random uuidv4 (32 characters)
                 null,
                 Collections.singletonList(0),
                 0,

@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -44,6 +45,12 @@ final class Helper {
         }
 
         return sb.toString();
+    }
+
+    static String random32CharsUUIDv4() {
+        UUID uuid = UUID.randomUUID();
+        String uuidString = uuid.toString().replace("-", ""); // Remove hyphens
+        return uuidString.substring(0, 32);
     }
 
     static String findValueByKey(String rawData, String key) {
